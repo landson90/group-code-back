@@ -42,21 +42,6 @@ public class ProjetoService {
         return mapper.toModelProjetoDto(projetoSalvo);
     }
 
-    public void editarProjeto(ProjetoRequestDto request, Long id) {
-        var projeto = validarPessoa(id);
-        BeanUtils.copyProperties(request, projeto, "id", "dataInicio", "dataFim");
-        this.projetoRepository.save(projeto);
-
-    }
-
-    private Projeto validarPessoa(Long id) {
-        Optional<Projeto> product = this.projetoRepository.findById(id);
-        Projeto projeto = product.orElseThrow(() -> new ObjetoNaoEncontradoException(
-                "Nao temos projeto associado para esse código  " + id
-        ));
-        return projeto;
-    }
-
     public void apagarProjeto(Long id) {
         var projeto = validarPessoa(id);
         if(projeto.getStatus().getDescricao().equals("INICIADO") ||
@@ -67,4 +52,29 @@ public class ProjetoService {
         projetoRepository.deleteById(id);
 
     }
+
+    public void editarProjeto(ProjetoRequestDto request, Long id) {
+        var projeto = validarPessoa(id);
+        BeanUtils.copyProperties(request, projeto, "id", "dataInicio", "dataFim");
+        this.projetoRepository.save(projeto);
+
+    }
+
+    public Projeto obterProjeto(Long id) {
+        Optional<Projeto> product = this.projetoRepository.findById(id);
+        Projeto projeto = product.orElseThrow(() -> new ObjetoNaoEncontradoException(
+                "Nao temos projeto associado para esse código  " + id
+        ));
+        return projeto;
+    }
+
+    private Projeto validarPessoa(Long id) {
+        Optional<Projeto> product = this.projetoRepository.findById(id);
+        Projeto projeto = product.orElseThrow(() -> new ObjetoNaoEncontradoException(
+                "Nao temos projeto associado para esse código  " + id
+        ));
+        return projeto;
+    }
+
+
 }

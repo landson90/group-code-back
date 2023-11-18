@@ -18,17 +18,16 @@ public class Membros {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idprojeto")
-    private Long idProjeto;
+    @Column(name = "membro_id")
+    private Long membroId;
 
-    @Column(name = "idpessoa")
-    private Long idPessoa;
+
 
     @ManyToOne
-    @JoinColumn(name = "idprojeto", insertable = false, updatable = false)
+    @JoinColumn(name = "idprojeto")
     private Projeto projeto;
 
     @ManyToOne
-    @JoinColumn(name = "idpessoa", insertable = false, updatable = false)
+    @JoinColumn(name = "idpessoa")
     private Pessoa pessoa;
 }

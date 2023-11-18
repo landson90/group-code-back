@@ -1,8 +1,8 @@
 package com.group.api.enums;
 
 public enum CargoEnum {
-    GERENTE("gerente"),
-    DEV("dev");
+    GERENTE("GERENTE"),
+    FUCIONARIO("FUCIONARIO");
 
 
     private final String descricao;

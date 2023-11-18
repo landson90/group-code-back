@@ -31,5 +31,15 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
     }
 
+    @ExceptionHandler(MembrosException.class)
+    public ResponseEntity<ErroPadrao> membrosException(MembrosException e,
+                                                     HttpServletRequest request) {
+
+        ErroPadrao err = new ErroPadrao(HttpStatus.NOT_FOUND.value(),
+                e.getMessage(),
+                System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
+
 
 }
