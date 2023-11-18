@@ -4,6 +4,7 @@ import com.group.api.dto.ProjetoDto;
 import com.group.api.dto.ProjetoRequestDto;
 import com.group.api.dto.mapper.ProjetoMapper;
 import com.group.api.exceptions.ObjetoNaoEncontradoException;
+import com.group.api.exceptions.ProjetoNaoPodeSerApagadoException;
 import com.group.api.model.Pessoa;
 import com.group.api.model.Projeto;
 import com.group.api.repository.ProjetoRepository;
@@ -61,7 +62,7 @@ public class ProjetoService {
         if(projeto.getStatus().getDescricao().equals("INICIADO") ||
                 projeto.getStatus().getDescricao().equals("EM_ANDAMENTO") ||
                 projeto.getStatus().getDescricao().equals("ENCERRADO")) {
-            throw new ObjetoNaoEncontradoException("Não poder apagar projeto");
+            throw new ProjetoNaoPodeSerApagadoException("Não poder apagar projeto");
         }
         projetoRepository.deleteById(id);
 
